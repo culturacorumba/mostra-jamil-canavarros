@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostra de Arte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: #fff;
+      color: #1a1a18;
+      min-height: 100vh;
+    }
+
+    .hero {
+      background: #1a1a18;
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .evento {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a09880;
+      margin-bottom: 1.5rem;
+    }
+
+    .titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 300;
+      font-style: italic;
+      color: #f0ece4;
+      margin: 0 0 0.4rem;
+      line-height: 1.2;
+    }
+
+    .autor {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: #a09880;
+    }
+
+    .numero {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #5a5648;
+    }
+
+    .corpo {
+      padding: 2rem 1.75rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .descricao {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    hr {
+      border: none;
+      border-top: 0.5px solid #ddd;
+      margin-bottom: 1.75rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .item label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 4px;
+    }
+
+    .item span {
+      font-size: 14px;
+      color: #1a1a18;
+    }
+
+    .disponivel { color: #3B6D11 !important; }
+    .vendido    { color: #A32D2D !important; }
+
+    .preco-bloco {
+      background: #f5f4f1;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .preco-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    .preco-valor {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: #1a1a18;
+    }
+
+    .btn-contato {
+      display: block;
+      width: 100%;
+      padding: 0.85rem;
+      border: 0.5px solid #ccc;
+      border-radius: 8px;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a1a18;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-contato:hover { background: #f5f4f1; }
+
+    .erro {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #aaa;
+    }
+
+    .erro h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+  // =============================================
+  // DADOS DAS PEÇAS — edite aqui
+  // =============================================
+  const pecas = {
+    1: {
+      numero: "01",
+      evento: "Mostra de Artes Visuais · 2025",
+      titulo: "Canoa no Silêncio",
+      autor: "Maria Cândida Ferreira",
+      descricao: "Uma travessia sem destino, onde a água e o céu se confundem — tela que nasce da memória das cheias do Pantanal.",
+      tecnica: "Óleo sobre tela",
+      ano: "2024",
+      dimensoes: "80 × 60 cm",
+      disponivel: true,
+      preco: "R$ 2.800,00",
+      contato: "https://wa.me/5567999999999"
+    },
+    2: {
+      numero: "02",
+      evento: "Mostra de Artes Visuais · 2025",
+      titulo: "Raízes de Outubro",
+      autor: "João Pantaneiro",
+      descricao: "Gravura produzida durante a seca, quando as raízes emergem da lama e contam a história do ciclo das águas.",
+      tecnica: "Gravura em metal",
+      ano: "2023",
+      dimensoes: "50 × 40 cm",
+      disponivel: false,
+      preco: "R$ 1.500,00",
+      contato: "https://wa.me/5567999999999"
+    }
+    // Adicione mais peças aqui seguindo o mesmo formato
+  };
+
+  // =============================================
+  // Lê o parâmetro ?id= da URL
+  // =============================================
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const peca = pecas[id];
+  const app = document.getElementById("app");
+
+  if (!peca) {
+    app.innerHTML = `
+      <div class="erro">
+        <h2>Peça não encontrada</h2>
+        <p>Verifique o QR code ou acesse com ?id=1, ?id=2, etc.</p>
+      </div>
+    `;
+  } else {
+    const status = peca.disponivel
+      ? `<span class="disponivel">Disponível</span>`
+      : `<span class="vendido">Vendida</span>`;
+
+    app.innerHTML = `
+      <div class="hero">
+        <span class="numero">Nº ${peca.numero} / 10</span>
+        <p class="evento">${peca.evento}</p>
+        <h1 class="titulo">${peca.titulo}</h1>
+        <p class="autor">${peca.autor}</p>
+      </div>
+      <div class="corpo">
+        <p class="descricao">"${peca.descricao}"</p>
+        <hr>
+        <div class="grid">
+          <div class="item">
+            <label>Técnica</label>
+            <span>${peca.tecnica}</span>
+          </div>
+          <div class="item">
+            <label>Ano</label>
+            <span>${peca.ano}</span>
+          </div>
+          <div class="item">
+            <label>Dimensões</label>
+            <span>${peca.dimensoes}</span>
+          </div>
+          <div class="item">
+            <label>Disponibilidade</label>
+            ${status}
+          </div>
+        </div>
+        <div class="preco-bloco">
+          <span class="preco-label">Valor</span>
+          <span class="preco-valor">${peca.preco}</span>
+        </div>
+        <a class="btn-contato" href="${peca.contato}" target="_blank">Entrar em contato</a>
+      </div>
+    `;
+  }
+</script>
+</body>
+</html>
