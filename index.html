@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Art. 121-A · Jamil Canavarros</title>
+  <meta name="description" content="Exposição de esculturas Art. 121-A, de Jamil Canavarros, na Casa Museu do Dr. Gabi.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: #fff;
+      color: #1a1a18;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .hero {
+      background: #1a1a18;
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .evento {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a09880;
+      margin-bottom: 1.25rem;
+    }
+
+    .titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      font-style: italic;
+      color: #f0ece4;
+      margin: 0 0 0.4rem;
+      line-height: 1.15;
+    }
+
+    .subtitulo {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #a09880;
+      text-transform: uppercase;
+    }
+
+    .numero {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #5a5648;
+    }
+
+    .corpo {
+      padding: 2rem 1.75rem 3rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .corpo-peca {
+      max-width: 520px;
+    }
+
+    .descricao {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 1.75rem;
+      font-style: italic;
+    }
+
+    .texto-curatorial {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #444;
+      margin-bottom: 1.2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 0.5px solid #ddd;
+      margin: 1.8rem 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .item label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 4px;
+    }
+
+    .item span {
+      font-size: 14px;
+      color: #1a1a18;
+      line-height: 1.5;
+    }
+
+    .disponivel { color: #3B6D11 !important; }
+    .vendido { color: #A32D2D !important; }
+
+    .preco-bloco {
+      background: #f5f4f1;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .preco-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #aaa;
+      flex-shrink: 0;
+    }
+
+    .preco-valor {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: #1a1a18;
+      text-align: right;
+    }
+
+    .btn-contato,
+    .btn-voltar {
+      display: block;
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border: 0.5px solid #ccc;
+      border-radius: 8px;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a1a18;
+      text-align: center;
+      text-decoration: none;
+      transition: 0.2s ease;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-contato:hover,
+    .btn-voltar:hover {
+      background: #f5f4f1;
+    }
+
+    .lista-obras {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .card-obra {
+      border: 0.5px solid #ddd;
+      border-radius: 14px;
+      padding: 1rem;
+      text-decoration: none;
+      background: #fff;
+      transition: 0.2s ease;
+    }
+
+    .card-obra:hover {
+      background: #f8f7f4;
+      border-color: #cfc9bc;
+    }
+
+    .card-numero {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-style: italic;
+      font-weight: 300;
+      color: #1a1a18;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-meta {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .erro {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #aaa;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .erro h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+
+    .secao-titulo {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9b927d;
+      margin-bottom: 0.75rem;
+    }
+
+    .nota {
+      font-size: 12px;
+      color: #777;
+      line-height: 1.7;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .titulo { font-size: 34px; }
+      .grid,
+      .lista-obras { grid-template-columns: 1fr; }
+      .preco-bloco {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .preco-valor { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const exposicao = {
+      nome: "Art. 121-A",
+      tema: "Feminicídio",
+      artista: "Jamil Canavarros",
+      local: "Casa Museu do Dr. Gabi",
+      tipo: "Exposição de esculturas",
+      totalPecas: 10,
+      materiais: "Madeira (pinos), cola, prego e verniz tipo imbuia",
+      dimensoesGerais: "de 0,40 m até 1,00 m",
+      texto1: "A função social da arte vai além do simples entretenimento ou da fruição estética. A arte também é linguagem da alma, memória coletiva e instrumento de reflexão. Ela nos aproxima do que é sensível, profundo e humano.",
+      texto2: "Retratar a beleza do Pantanal, exaltando sua flora, sua fauna e a riqueza do nosso patrimônio material e imaterial, é de grande valia para a promoção da nossa cultura. Mas também é necessário falar das mazelas sociais que atravessam o cotidiano.",
+      texto3: "Assim como o desemprego, a falta de moradia, o alcoolismo, as drogas e a violência urbana, o feminicídio constitui uma grave ferida social. Enfrentá-lo exige consciência pública, debate permanente e campanhas fortes em todos os setores da sociedade.",
+      texto4: "Na exposição Art. 121-A, Jamil Canavarros apresenta dez esculturas em madeira que transformam a matéria em denúncia. Cada peça nomeia uma forma de violência, opressão ou silenciamento, convocando o público a olhar de frente para uma realidade que não pode ser naturalizada."
+    };
+
+    const whatsapp = "5567996290592";
+
+    const pecas = {
+      1: {
+        numero: "01",
+        titulo: "Cárcere privado",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,75 × 0,42 m",
+        valor: "R$ 1.200,00",
+        disponivel: true
+      },
+      2: {
+        numero: "02",
+        titulo: "Asfixia",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,31 × 0,79 m",
+        valor: "R$ 1.500,00",
+        disponivel: true
+      },
+      3: {
+        numero: "03",
+        titulo: "Sabor amargo",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,32 × 0,80 m",
+        valor: "R$ 1.500,00",
+        disponivel: true
+      },
+      4: {
+        numero: "04",
+        titulo: "Submissão",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,40 × 0,40 m",
+        valor: "R$ 1.200,00",
+        disponivel: true
+      },
+      5: {
+        numero: "05",
+        titulo: "Stalking",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,32 × 0,74 m",
+        valor: "R$ 1.500,00",
+        disponivel: true
+      },
+      6: {
+        numero: "06",
+        titulo: "Tortura",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,14 × 1,00 m",
+        valor: "R$ 1.500,00",
+        disponivel: true
+      },
+      7: {
+        numero: "07",
+        titulo: "Silêncio",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,17 × 0,60 m",
+        valor: "R$ 1.200,00",
+        disponivel: true
+      },
+      8: {
+        numero: "08",
+        titulo: "Agressão sexual",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,25 × 0,70 m",
+        valor: "R$ 1.200,00",
+        disponivel: true
+      },
+      9: {
+        numero: "09",
+        titulo: "Sequestro",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,32 × 0,67 m",
+        valor: "R$ 1.500,00",
+        disponivel: true
+      },
+      10: {
+        numero: "10",
+        titulo: "Abandono",
+        tecnica: "Escultura em madeira",
+        material: exposicao.materiais,
+        dimensoes: "0,14 × 0,84 m",
+        valor: "R$ 1.500,00",
+        disponivel: true
+      }
+    };
+
+    const app = document.getElementById("app");
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    function escapeHtml(valor) {
+      return String(valor ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function linkContato(peca) {
+      const mensagem = `Olá, tenho interesse na obra ${peca.numero} — ${peca.titulo}, da exposição ${exposicao.nome}, de ${exposicao.artista}.`;
+      return `https://wa.me/${whatsapp}?text=${encodeURIComponent(mensagem)}`;
+    }
+
+    function renderHome() {
+      const cards = Object.entries(pecas).map(([id, peca]) => `
+        <a class="card-obra" href="?id=${id}">
+          <div class="card-numero">Peça ${escapeHtml(peca.numero)} de ${exposicao.totalPecas}</div>
+          <div class="card-titulo">${escapeHtml(peca.titulo)}</div>
+          <div class="card-meta">
+            ${escapeHtml(peca.dimensoes)}<br>
+            ${escapeHtml(peca.valor)}
+          </div>
+        </a>
+      `).join("");
+
+      app.innerHTML = `
+        <div class="hero">
+          <p class="evento">${escapeHtml(exposicao.tipo)} · ${escapeHtml(exposicao.local)}</p>
+          <h1 class="titulo">${escapeHtml(exposicao.nome)}</h1>
+          <p class="subtitulo">${escapeHtml(exposicao.artista)} · tema: ${escapeHtml(exposicao.tema)}</p>
+        </div>
+
+        <div class="corpo">
+          <p class="descricao">“A arte também existe para nomear aquilo que a sociedade insiste em silenciar.”</p>
+
+          <div class="secao-titulo">Texto curatorial</div>
+          <p class="texto-curatorial">${escapeHtml(exposicao.texto1)}</p>
+          <p class="texto-curatorial">${escapeHtml(exposicao.texto2)}</p>
+          <p class="texto-curatorial">${escapeHtml(exposicao.texto3)}</p>
+          <p class="texto-curatorial">${escapeHtml(exposicao.texto4)}</p>
+
+          <hr>
+
+          <div class="grid">
+            <div class="item">
+              <label>Artista</label>
+              <span>${escapeHtml(exposicao.artista)}</span>
+            </div>
+            <div class="item">
+              <label>Exposição</label>
+              <span>${escapeHtml(exposicao.nome)}</span>
+            </div>
+            <div class="item">
+              <label>Tema</label>
+              <span>${escapeHtml(exposicao.tema)}</span>
+            </div>
+            <div class="item">
+              <label>Número de peças</label>
+              <span>${escapeHtml(exposicao.totalPecas)}</span>
+            </div>
+            <div class="item">
+              <label>Materiais</label>
+              <span>${escapeHtml(exposicao.materiais)}</span>
+            </div>
+            <div class="item">
+              <label>Dimensões gerais</label>
+              <span>${escapeHtml(exposicao.dimensoesGerais)}</span>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="secao-titulo">Obras da mostra</div>
+          <div class="lista-obras">
+            ${cards}
+          </div>
+
+          <p class="nota">
+            Esta página foi estruturada para uso no GitHub Pages. Para acessar uma obra específica por QR Code, use links como:
+            <br><strong>seusite.github.io/?id=1</strong>, <strong>?id=2</strong>, até <strong>?id=10</strong>.
+          </p>
+        </div>
+      `;
+    }
+
+    function renderPeca(peca) {
+      const statusClasse = peca.disponivel ? "disponivel" : "vendido";
+      const statusTexto = peca.disponivel ? "Disponível" : "Vendida";
+
+      app.innerHTML = `
+        <div class="hero">
+          <span class="numero">Nº ${escapeHtml(peca.numero)} / ${escapeHtml(exposicao.totalPecas)}</span>
+          <p class="evento">${escapeHtml(exposicao.nome)} · ${escapeHtml(exposicao.local)}</p>
+          <h1 class="titulo">${escapeHtml(peca.titulo)}</h1>
+          <p class="subtitulo">${escapeHtml(exposicao.artista)} · tema: ${escapeHtml(exposicao.tema)}</p>
+        </div>
+
+        <div class="corpo corpo-peca">
+          <p class="descricao">
+            Obra integrante da exposição <em>${escapeHtml(exposicao.nome)}</em>, conjunto escultórico de denúncia e reflexão sobre a violência contra a mulher.
+          </p>
+
+          <hr>
+
+          <div class="grid">
+            <div class="item">
+              <label>Técnica</label>
+              <span>${escapeHtml(peca.tecnica)}</span>
+            </div>
+
+            <div class="item">
+              <label>Material</label>
+              <span>${escapeHtml(peca.material)}</span>
+            </div>
+
+            <div class="item">
+              <label>Dimensões</label>
+              <span>${escapeHtml(peca.dimensoes)}</span>
+            </div>
+
+            <div class="item">
+              <label>Disponibilidade</label>
+              <span class="${statusClasse}">${statusTexto}</span>
+            </div>
+          </div>
+
+          <div class="preco-bloco">
+            <span class="preco-label">Valor</span>
+            <span class="preco-valor">${escapeHtml(peca.valor)}</span>
+          </div>
+
+          <a class="btn-contato" href="${linkContato(peca)}" target="_blank" rel="noopener noreferrer">
+            Entrar em contato
+          </a>
+
+          <a class="btn-voltar" href="./">
+            Ver todas as obras
+          </a>
+        </div>
+      `;
+    }
+
+    if (!id) {
+      renderHome();
+    } else if (pecas[id]) {
+      renderPeca(pecas[id]);
+    } else {
+      app.innerHTML = `
+        <div class="erro">
+          <h2>Obra não encontrada</h2>
+          <p>Verifique o link ou retorne para a página principal da exposição.</p>
+          <br>
+          <a class="btn-voltar" href="./" style="max-width: 280px; margin: 0 auto;">Voltar à exposição</a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
