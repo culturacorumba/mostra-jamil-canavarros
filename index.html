@@ -1,261 +1,557 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mostra de Arte</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      background: #fff;
-      color: #1a1a18;
-      min-height: 100vh;
-    }
-
-    .hero {
-      background: #1a1a18;
-      padding: 3rem 2rem 2.5rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .evento {
-      display: inline-block;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #a09880;
-      margin-bottom: 1.5rem;
-    }
-
-    .titulo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 38px;
-      font-weight: 300;
-      font-style: italic;
-      color: #f0ece4;
-      margin: 0 0 0.4rem;
-      line-height: 1.2;
-    }
-
-    .autor {
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      color: #a09880;
-    }
-
-    .numero {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.5rem;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: #5a5648;
-    }
-
-    .corpo {
-      padding: 2rem 1.75rem;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .descricao {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: #555;
-      margin-bottom: 2rem;
-      font-style: italic;
-    }
-
-    hr {
-      border: none;
-      border-top: 0.5px solid #ddd;
-      margin-bottom: 1.75rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem 1rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .item label {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #aaa;
-      margin-bottom: 4px;
-    }
-
-    .item span {
-      font-size: 14px;
-      color: #1a1a18;
-    }
-
-    .disponivel { color: #3B6D11 !important; }
-    .vendido    { color: #A32D2D !important; }
-
-    .preco-bloco {
-      background: #f5f4f1;
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-    }
-
-    .preco-label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #aaa;
-    }
-
-    .preco-valor {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
-      font-weight: 300;
-      color: #1a1a18;
-    }
-
-    .btn-contato {
-      display: block;
-      width: 100%;
-      padding: 0.85rem;
-      border: 0.5px solid #ccc;
-      border-radius: 8px;
-      background: transparent;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #1a1a18;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .btn-contato:hover { background: #f5f4f1; }
-
-    .erro {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: #aaa;
-    }
-
-    .erro h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
-      font-weight: 300;
-      font-style: italic;
-      margin-bottom: 0.5rem;
-      color: #555;
-    }
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Light'; color: #141413; -webkit-text-stroke: #141413}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Light'; color: #141413; -webkit-text-stroke: #141413; min-height: 14.0px}
+    span.s1 {font-kerning: none}
   </style>
 </head>
 <body>
-
-<div id="app"></div>
-
-<script>
-  // =============================================
-  // DADOS DAS PEÇAS — edite aqui
-  // =============================================
-  const pecas = {
-    1: {
-      numero: "01",
-      evento: "Mostra de Artes Visuais · 2025",
-      titulo: "Canoa no Silêncio",
-      autor: "Maria Cândida Ferreira",
-      descricao: "Uma travessia sem destino, onde a água e o céu se confundem — tela que nasce da memória das cheias do Pantanal.",
-      tecnica: "Óleo sobre tela",
-      ano: "2024",
-      dimensoes: "80 × 60 cm",
-      disponivel: true,
-      preco: "R$ 2.800,00",
-      contato: "https://wa.me/5567999999999"
-    },
-    2: {
-      numero: "02",
-      evento: "Mostra de Artes Visuais · 2025",
-      titulo: "Raízes de Outubro",
-      autor: "João Pantaneiro",
-      descricao: "Gravura produzida durante a seca, quando as raízes emergem da lama e contam a história do ciclo das águas.",
-      tecnica: "Gravura em metal",
-      ano: "2023",
-      dimensoes: "50 × 40 cm",
-      disponivel: false,
-      preco: "R$ 1.500,00",
-      contato: "https://wa.me/5567999999999"
-    }
-    // Adicione mais peças aqui seguindo o mesmo formato
-  };
-
-  // =============================================
-  // Lê o parâmetro ?id= da URL
-  // =============================================
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-  const peca = pecas[id];
-  const app = document.getElementById("app");
-
-  if (!peca) {
-    app.innerHTML = `
-      <div class="erro">
-        <h2>Peça não encontrada</h2>
-        <p>Verifique o QR code ou acesse com ?id=1, ?id=2, etc.</p>
-      </div>
-    `;
-  } else {
-    const status = peca.disponivel
-      ? `<span class="disponivel">Disponível</span>`
-      : `<span class="vendido">Vendida</span>`;
-
-    app.innerHTML = `
-      <div class="hero">
-        <span class="numero">Nº ${peca.numero} / 10</span>
-        <p class="evento">${peca.evento}</p>
-        <h1 class="titulo">${peca.titulo}</h1>
-        <p class="autor">${peca.autor}</p>
-      </div>
-      <div class="corpo">
-        <p class="descricao">"${peca.descricao}"</p>
-        <hr>
-        <div class="grid">
-          <div class="item">
-            <label>Técnica</label>
-            <span>${peca.tecnica}</span>
-          </div>
-          <div class="item">
-            <label>Ano</label>
-            <span>${peca.ano}</span>
-          </div>
-          <div class="item">
-            <label>Dimensões</label>
-            <span>${peca.dimensoes}</span>
-          </div>
-          <div class="item">
-            <label>Disponibilidade</label>
-            ${status}
-          </div>
-        </div>
-        <div class="preco-bloco">
-          <span class="preco-label">Valor</span>
-          <span class="preco-valor">${peca.preco}</span>
-        </div>
-        <a class="btn-contato" href="${peca.contato}" target="_blank">Entrar em contato</a>
-      </div>
-    `;
-  }
-</script>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="pt-BR"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Art. 121-A · Jamil Canavarros&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="Exposição de esculturas Art. 121-A, de Jamil Canavarros, na Casa Museu do Dr. Gabi."&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>* { margin: 0; padding: 0; box-sizing: border-box; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'DM Sans', sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 300;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #1a1a18;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>min-height: 100vh;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>a { color: inherit; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.hero {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #1a1a18;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 3rem 2rem 2.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position: relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.evento {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: inline-block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.2em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #a09880;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 1.25rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.titulo {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Cormorant Garamond', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 42px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 300;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-style: italic;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #f0ece4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0 0 0.4rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.15;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.subtitulo {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 13px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.08em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #a09880;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.numero {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>top: 1.25rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>right: 1.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 11px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.15em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #5a5648;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.corpo {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 2rem 1.75rem 3rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 760px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0 auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.corpo-peca {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 520px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.descricao {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Cormorant Garamond', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 300;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.8;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #555;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 1.75rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-style: italic;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.texto-curatorial {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 15px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.9;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #444;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 1.2rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>hr {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-top: 0.5px solid #ddd;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 1.8rem 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.grid {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: 1fr 1fr;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 1.25rem 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 1.75rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.item label {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.15em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #aaa;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 4px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.item span {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #1a1a18;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.5;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.disponivel { color: #3B6D11 !important; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.vendido { color: #A32D2D !important; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.preco-bloco {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #f5f4f1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 1.25rem 1.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content: space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 1.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.preco-label {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 11px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.15em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #aaa;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>flex-shrink: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.preco-valor {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Cormorant Garamond', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 28px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 300;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #1a1a18;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: right;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-contato,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-voltar {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0.95rem 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 0.5px solid #ccc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: transparent;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'DM Sans', sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 13px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.1em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #1a1a18;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-decoration: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: 0.2s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 0.8rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-contato:hover,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-voltar:hover {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #f5f4f1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.lista-obras {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(2, minmax(0, 1fr));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 1.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card-obra {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 0.5px solid #ddd;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-decoration: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: 0.2s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card-obra:hover {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #f8f7f4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-color: #cfc9bc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card-numero {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.15em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #999;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card-titulo {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Cormorant Garamond', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 28px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-style: italic;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 300;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #1a1a18;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card-meta {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 13px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #666;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.6;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.erro {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 4rem 2rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #aaa;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 560px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0 auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.erro h2 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: 'Cormorant Garamond', serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 28px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: 300;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-style: italic;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #555;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.secao-titulo {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 11px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: 0.18em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #9b927d;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 0.75rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.nota {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #777;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.7;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@media (max-width: 640px) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.titulo { font-size: 34px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.grid,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.lista-obras { grid-template-columns: 1fr; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.preco-bloco {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>flex-direction: column;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>align-items: flex-start;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.preco-valor { text-align: left; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="app"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const exposicao = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>nome: "Art. 121-A",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>tema: "Feminicídio",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>artista: "Jamil Canavarros",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>local: "Casa Museu do Dr. Gabi",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>tipo: "Exposição de esculturas",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>totalPecas: 10,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>materiais: "Madeira (pinos), cola, prego e verniz tipo imbuia",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>dimensoesGerais: "de 0,40 m até 1,00 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>texto1: "A função social da arte vai além do simples entretenimento ou da fruição estética. A arte também é linguagem da alma, memória coletiva e instrumento de reflexão. Ela nos aproxima do que é sensível, profundo e humano.",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>texto2: "Retratar a beleza do Pantanal, exaltando sua flora, sua fauna e a riqueza do nosso patrimônio material e imaterial, é de grande valia para a promoção da nossa cultura. Mas também é necessário falar das mazelas sociais que atravessam o cotidiano.",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>texto3: "Assim como o desemprego, a falta de moradia, o alcoolismo, as drogas e a violência urbana, o feminicídio constitui uma grave ferida social. Enfrentá-lo exige consciência pública, debate permanente e campanhas fortes em todos os setores da sociedade.",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>texto4: "Na exposição Art. 121-A, Jamil Canavarros apresenta dez esculturas em madeira que transformam a matéria em denúncia. Cada peça nomeia uma forma de violência, opressão ou silenciamento, convocando o público a olhar de frente para uma realidade que não pode ser naturalizada."</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const whatsapp = "5567996290592";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const pecas = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>1: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "01",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Cárcere privado",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,75 × 0,42 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.200,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>2: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "02",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Asfixia",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,31 × 0,79 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.500,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>3: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "03",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Sabor amargo",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,32 × 0,80 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.500,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>4: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "04",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Submissão",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,40 × 0,40 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.200,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>5: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "05",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Stalking",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,32 × 0,74 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.500,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>6: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "06",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Tortura",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,14 × 1,00 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.500,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>7: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "07",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Silêncio",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,17 × 0,60 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.200,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>8: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "08",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Agressão sexual",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,25 × 0,70 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.200,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>9: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "09",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Sequestro",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,32 × 0,67 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.500,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>10: {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>numero: "10",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>titulo: "Abandono",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tecnica: "Escultura em madeira",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>material: exposicao.materiais,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>dimensoes: "0,14 × 0,84 m",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>valor: "R$ 1.500,00",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>disponivel: true</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const app = document.getElementById("app");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const params = new URLSearchParams(window.location.search);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const id = params.get("id");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function escapeHtml(valor) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>return String(valor ?? "")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll("&amp;", "&amp;amp;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll("&lt;", "&amp;lt;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll("&gt;", "&amp;gt;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll('"', "&amp;quot;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll("'", "&amp;#039;");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function linkContato(peca) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const mensagem = `Olá, tenho interesse na obra ${peca.numero} — ${peca.titulo}, da exposição ${exposicao.nome}, de ${exposicao.artista}.`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>return `https://wa.me/${whatsapp}?text=${encodeURIComponent(mensagem)}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function renderHome() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const cards = Object.entries(pecas).map(([id, peca]) =&gt; `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a class="card-obra" href="?id=${id}"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="card-numero"&gt;Peça ${escapeHtml(peca.numero)} de ${exposicao.totalPecas}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="card-titulo"&gt;${escapeHtml(peca.titulo)}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="card-meta"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>${escapeHtml(peca.dimensoes)}&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>${escapeHtml(peca.valor)}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>`).join("");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>app.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="hero"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="evento"&gt;${escapeHtml(exposicao.tipo)} · ${escapeHtml(exposicao.local)}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h1 class="titulo"&gt;${escapeHtml(exposicao.nome)}&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="subtitulo"&gt;${escapeHtml(exposicao.artista)} · tema: ${escapeHtml(exposicao.tema)}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="corpo"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="descricao"&gt;“A arte também existe para nomear aquilo que a sociedade insiste em silenciar.”&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="secao-titulo"&gt;Texto curatorial&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="texto-curatorial"&gt;${escapeHtml(exposicao.texto1)}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="texto-curatorial"&gt;${escapeHtml(exposicao.texto2)}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="texto-curatorial"&gt;${escapeHtml(exposicao.texto3)}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="texto-curatorial"&gt;${escapeHtml(exposicao.texto4)}&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;hr&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="grid"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Artista&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(exposicao.artista)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Exposição&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(exposicao.nome)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Tema&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(exposicao.tema)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Número de peças&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(exposicao.totalPecas)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Materiais&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(exposicao.materiais)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Dimensões gerais&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(exposicao.dimensoesGerais)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;hr&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="secao-titulo"&gt;Obras da mostra&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="lista-obras"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>${cards}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="nota"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Esta página foi estruturada para uso no GitHub Pages. Para acessar uma obra específica por QR Code, use links como:</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;br&gt;&lt;strong&gt;seusite.github.io/?id=1&lt;/strong&gt;, &lt;strong&gt;?id=2&lt;/strong&gt;, até &lt;strong&gt;?id=10&lt;/strong&gt;.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function renderPeca(peca) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const statusClasse = peca.disponivel ? "disponivel" : "vendido";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const statusTexto = peca.disponivel ? "Disponível" : "Vendida";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>app.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="hero"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;span class="numero"&gt;Nº ${escapeHtml(peca.numero)} / ${escapeHtml(exposicao.totalPecas)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="evento"&gt;${escapeHtml(exposicao.nome)} · ${escapeHtml(exposicao.local)}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h1 class="titulo"&gt;${escapeHtml(peca.titulo)}&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="subtitulo"&gt;${escapeHtml(exposicao.artista)} · tema: ${escapeHtml(exposicao.tema)}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="corpo corpo-peca"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p class="descricao"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Obra integrante da exposição &lt;em&gt;${escapeHtml(exposicao.nome)}&lt;/em&gt;, conjunto escultórico de denúncia e reflexão sobre a violência contra a mulher.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;hr&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="grid"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Técnica&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(peca.tecnica)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Material&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(peca.material)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Dimensões&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span&gt;${escapeHtml(peca.dimensoes)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label&gt;Disponibilidade&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;span class="${statusClasse}"&gt;${statusTexto}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="preco-bloco"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="preco-label"&gt;Valor&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="preco-valor"&gt;${escapeHtml(peca.valor)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;a class="btn-contato" href="${linkContato(peca)}" target="_blank" rel="noopener noreferrer"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Entrar em contato</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;a class="btn-voltar" href="./"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>Ver todas as obras</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (!id) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>renderHome();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>} else if (pecas[id]) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>renderPeca(pecas[id]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>app.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="erro"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h2&gt;Obra não encontrada&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p&gt;Verifique o link ou retorne para a página principal da exposição.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;a class="btn-voltar" href="./" style="max-width: 280px; margin: 0 auto;"&gt;Voltar à exposição&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
 </body>
 </html>
